@@ -2,9 +2,9 @@
   "name": "func-iter",
   "version": "0.0.1",
   "description": "Functional iterators for JS/TS",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --no-timeouts --colors -r ts-node/register tests/**.test.ts"
   },
   "repository": {
     "type": "git",
