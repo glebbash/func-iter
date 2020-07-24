@@ -1,7 +1,7 @@
 import { range } from "../src"
 import { expect } from "chai"
-import { pad } from "./utils/pad"
 import { monitor } from "./utils/test-console"
+import { m } from "multiline-str"
 
 describe("range", () => {
     const zeroToNine = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -29,7 +29,7 @@ describe("range", () => {
             console.log(i)
         }
 
-        expect(console.data().join("\n")).to.eql(pad`
+        expect(console.data().join("\n")).to.eql(m`
             0
             1
             2
