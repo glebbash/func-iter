@@ -1,7 +1,7 @@
 import { expect } from "chai"
 import { iter, range, rangeInc } from "../src"
-import { pad } from "./utils/pad"
 import { monitor } from "./utils/test-console"
+import { m } from "multiline-str"
 
 function padStart(x: any, n: number): string {
     return x.padStart(n)
@@ -91,7 +91,7 @@ describe("iterable", () => {
             con.log(row.map((it) => padStart(it + "", 3)).join(" "))
         }
 
-        expect(con.data().join("\n")).to.eql(pad`
+        expect(con.data().join("\n")).to.eql(m`
               1   2   3   4   5   6   7   8   9  10
               2   4   6   8  10  12  14  16  18  20
               3   6   9  12  15  18  21  24  27  30
