@@ -40,7 +40,7 @@ export function iter<T>(iter: AsyncIterable<T>): AsyncFunctionalIterable<T>
 export function iter<T>(
     iter: Iterable<T> | AsyncIterable<T>,
 ): FunctionalIterable<T> | AsyncFunctionalIterable<T> {
-    if (Object.hasOwnProperty.call(iter, Symbol.asyncIterator)) {
+    if (iter[Symbol.asyncIterator] !== undefined) {
         return new AsyncFunctionalIterable(iter as AsyncIterable<T>)
     }
     return new FunctionalIterable(iter as Iterable<T>)
