@@ -2,6 +2,7 @@ import { expect } from "chai"
 import { iter, range, rangeInc } from "../src"
 import { monitor } from "./utils/test-console"
 import { m } from "multiline-str"
+import { async } from "../src/async/func-iter"
 
 function padStart(x: any, n: number): string {
     return x.padStart(n)
@@ -106,11 +107,11 @@ describe("iterable", () => {
     })
 
     it("to async", async () => {
-        const iter = rangeInc(1, 10)
-            .async()
+        const data = rangeInc(1, 10)
+            .to(async)
             .map(async (x) => x + 100)
 
-        for await (const val of iter) {
+        for await (const val of data) {
             console.log(val)
         }
     })

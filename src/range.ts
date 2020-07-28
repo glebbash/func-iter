@@ -1,5 +1,8 @@
 import { FunctionalIterable } from "./func-iter"
-import { numberGenerator } from "./methods"
+
+export function* numberGenerator(start: number, end: number, step: number) {
+    for (let i = start; i < end; i += step) yield i
+}
 
 export class RangeIterable extends FunctionalIterable<number> {
     constructor(public start: number, public end: number, public step: number) {
