@@ -1,8 +1,6 @@
 type Predicate<T> = (val: T) => boolean
 
-export async function* toAsync<T>(
-    iterable: Iterable<T>,
-): AsyncGenerator<T> {
+export async function* toAsync<T>(iterable: Iterable<T>): AsyncGenerator<T> {
     for (const val of iterable) {
         yield val
     }

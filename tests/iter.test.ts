@@ -17,8 +17,8 @@ describe("iterable", () => {
     })
 
     it("iter async", () => {
-        //async function * a() {}
-        const val = { [Symbol.asyncIterator](): any {} }
+        async function * a() {}
+        const val = a()
         expect(iter(val) instanceof AsyncFunctionalIterable).to.eql(true)
     })
 
