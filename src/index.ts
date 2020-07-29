@@ -5,6 +5,12 @@ export * from "./func-iter"
 export * from "./range"
 export * from "./methods"
 
+const is = <T>(
+    varToBeChecked: any,
+    propertyToCheckFor: keyof T,
+): varToBeChecked is T =>
+    (varToBeChecked as T)[propertyToCheckFor] !== undefined
+
 export function iter<T>(iter: Iterable<T>): FunctionalIterable<T>
 
 export function iter<T>(iter: AsyncIterable<T>): AsyncFunctionalIterable<T>
@@ -12,8 +18,8 @@ export function iter<T>(iter: AsyncIterable<T>): AsyncFunctionalIterable<T>
 export function iter<T>(
     iter: Iterable<T> | AsyncIterable<T>,
 ): FunctionalIterable<T> | AsyncFunctionalIterable<T> {
-    if (iter[Symbol.asyncIterator] !== undefined) {
-        return new AsyncFunctionalIterable(iter as AsyncIterable<T>)
+    if (is<AsyncIterable<T>>(iter, Symbol.asyncIterator as never)) {
+        return new AsyncFunctionalIterable(iter)
     }
-    return new FunctionalIterable(iter as Iterable<T>)
+    return new FunctionalIterable(iter)
 }

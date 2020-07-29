@@ -1,8 +1,8 @@
 import { expect } from "chai"
-import { iter, range, rangeInc } from "../src"
+import { iter, range, rangeInc, FunctionalIterable } from "../src"
 import { monitor } from "./utils/test-console"
 import { m } from "multiline-str"
-import { async } from "../src/async/func-iter"
+import { async, AsyncFunctionalIterable } from "../src/async/func-iter"
 
 function padStart(x: any, n: number): string {
     return x.padStart(n)
@@ -11,6 +11,16 @@ function padStart(x: any, n: number): string {
 describe("iterable", () => {
     const oneToSix = [1, 2, 3, 4, 5, 6]
     const isEven = (x: number) => x % 2 == 0
+
+    it("iter", () => {
+        expect(iter(oneToSix) instanceof FunctionalIterable).to.eql(true)
+    })
+
+    it("iter async", () => {
+        //async function * a() {}
+        const val = { [Symbol.asyncIterator](): any {} }
+        expect(iter(val) instanceof AsyncFunctionalIterable).to.eql(true)
+    })
 
     it("collect", () => {
         const res = iter(oneToSix).collect()
