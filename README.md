@@ -1,6 +1,6 @@
 # func-iter
 Functional iterators for JS/TS
-## Install
+## Installation
 ```bash
 npm install array-n
 ```
